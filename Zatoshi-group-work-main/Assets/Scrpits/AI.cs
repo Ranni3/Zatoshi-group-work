@@ -34,7 +34,6 @@ public class AI : MonoBehaviour
 
     public void damage()
     {
-        // Debug.Log(playerData.playerHealth);
         if (playerData.playerHealth > 0)
         {
             playerData.playerHealth -= 20.0f;
@@ -51,13 +50,8 @@ public class AI : MonoBehaviour
         }
         if (other.tag == "Bullet")
         {
-            //Debug.Log(enemyHealth);
             enemyHealth -= 20;
-            // Debug.Log(enemyHealth);
-            // Debug.Log("Hit");
-            
             Audio.PlayOneShot(bloodSound);
-
         }
 
     }
@@ -90,29 +84,7 @@ public class AI : MonoBehaviour
     {
         while (true)
         {
-            //switch (currentState)
-            //{
-            //    case enemyState.idle:
-            //        currentDistance = Vector3.Distance(player.position, transform.position);
-            //        if (currentDistance < reactionDistance)
-            //        {
-            //            currentState = enemyState.chasing;
-            //        }
-            //            agent.SetDestination(transform.position);
-            //        break;
-
-            //    case enemyState.chasing:
-            //        currentDistance = Vector3.Distance(player.position, transform.position);
-            //        if(currentDistance>reactionDistance)
-            //        {
-            //            currentState = enemyState.idle;
-            //        }
-            //            agent.SetDestination(player.position);
-            //        break;
-
-            //    default:
-            //        break;
-            //}
+           
             if (isDead == false)
             {
                 agent.SetDestination(player.position);
