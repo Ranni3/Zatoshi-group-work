@@ -7,7 +7,8 @@ public class ScannerEffectDemo : MonoBehaviour
 	public Transform ScannerOrigin;
 	public Material EffectMaterial;
 	public float ScanDistance;
-
+	private double FireRate = 2.0;
+	private double NextFire;
 	private Camera _camera;
 
 	// Demo Code
@@ -42,11 +43,11 @@ public class ScannerEffectDemo : MonoBehaviour
 			ScanDistance = 0;
 		}
 
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(1) && Time.time > NextFire)
 		{
 			Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
-
+			NextFire = Time.time + FireRate;
 			if (Physics.Raycast(ray, out hit))
 			{
 				_scanning = true;
