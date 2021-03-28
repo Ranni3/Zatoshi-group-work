@@ -31,7 +31,7 @@ public class LevelChecker : MonoBehaviour
             StartCoroutine(reset());
         }
         deadZombies = GameObject.FindGameObjectsWithTag("Dead");
-        if (deadZombies.Length == 7)
+        if (deadZombies.Length == 18)
         {
             levelUpText.SetActive(true);
         }
