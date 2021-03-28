@@ -22,14 +22,16 @@ public class AI : MonoBehaviour
     //public LevelUp zombieCheck;
 
     public AudioSource Audio;
-    public AudioClip bloodSound, attackSound ;
+    public AudioClip bloodSound, attackSound;
 
-       void Start()
+    void Start()
     {
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         StartCoroutine(Decision());
-       
+        StartCoroutine(AudioLoop());
+
     }
 
     public void damage()
@@ -37,7 +39,7 @@ public class AI : MonoBehaviour
         if (playerData.playerHealth > 0)
         {
             playerData.playerHealth -= 20.0f;
-            Audio.PlayOneShot(attackSound);
+            //Audio.PlayOneShot(attackSound);
         }
     }
 
@@ -46,12 +48,12 @@ public class AI : MonoBehaviour
         if (other.tag == "Player")
         {
             anim.SetBool("Attack", true);
-           
+
         }
         if (other.tag == "Bullet")
         {
             enemyHealth -= 20;
-            Audio.PlayOneShot(bloodSound);
+            // Audio.PlayOneShot(bloodSound);
         }
 
     }
@@ -73,18 +75,20 @@ public class AI : MonoBehaviour
             isDead = true;
             this.gameObject.tag = "Dead";
         }
-        
+
+
+
 
     }
 
-    
+
 
 
     IEnumerator Decision()
     {
         while (true)
         {
-           
+
             if (isDead == false)
             {
                 agent.SetDestination(player.position);
@@ -93,14 +97,22 @@ public class AI : MonoBehaviour
             if (isDead == true)
             {
                 agent.speed = 0f;
-                
+
                 isDead = false;
-               
+
             }
             yield return new WaitForSeconds(0.1f);
         }
-       
 
+
+    }
+    IEnumerator AudioLoop()
+    {
+        while (true)
+        {
+            Audio.Play(0);
+            yield return new WaitForSeconds(4);
+        }
     }
 }
 
