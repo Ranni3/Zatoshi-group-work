@@ -22,7 +22,7 @@ public class AI : MonoBehaviour
     //public LevelUp zombieCheck;
 
     public AudioSource Audio;
-    public AudioClip bloodSound, attackSound;
+    public AudioClip bloodSound, attackSound,damagenoise;
 
     void Start()
     {
@@ -39,7 +39,7 @@ public class AI : MonoBehaviour
         if (playerData.playerHealth > 0)
         {
             playerData.playerHealth -= 20.0f;
-            //Audio.PlayOneShot(attackSound);
+            GetComponent<AudioSource>().PlayOneShot(damagenoise, 0.9f);
         }
     }
 
@@ -111,7 +111,7 @@ public class AI : MonoBehaviour
         while (true)
         {
             Audio.Play(0);
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(6);
         }
     }
 }

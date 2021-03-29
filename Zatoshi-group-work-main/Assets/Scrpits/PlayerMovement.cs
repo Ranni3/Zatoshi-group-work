@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerSpeed = 10f;
     public float gravity = -9.8f;
     public float jump = 15.0f;
-
+    public AudioClip deathnoise;
     Vector3 gravityAccelatarion;
 
     public Transform groundChecker;
@@ -46,7 +46,9 @@ public class PlayerMovement : MonoBehaviour
 
         if(playerHealth ==0f)
         {
+            GetComponent<AudioSource>().PlayOneShot(deathnoise, 0.9f);
             gameOver = true;
+
         }
     }
     
